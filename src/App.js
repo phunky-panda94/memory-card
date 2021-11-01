@@ -4,27 +4,31 @@ import { useEffect, useState } from 'react';
 
 function App() {
     
+    let levelOne = [
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg'
+    ]
+
     const [selected, setSelected] = useState(new Map());
-    // TODO: implement level change
-    // Level 1: 3 -> Level 6: 9
     const [level, setLevel] = useState(1);
     const [score, setScore] = useState(0);
     const [topScore, setTopScore] = useState(score);
-    const [images, setImages] = useState(() => {
-        
-        let images = []
-        
-        for (let i = 1; i < 10; i++) {
-            images.push(`image${i}.jpg`);
-        }
-
-        return images;
-
-    });
+    const [images, setImages] = useState(levelOne);
 
     useEffect(() => {
-        setImages(images => shuffleImages(images));
-    }, [score])
+        setImages(shuffleImages(images));
+        if (score > topScore) {
+            setTopScore(score);
+        }
+    }, [score, topScore, images])
+
+    useEffect(() => {
+        if (score == level + 2) {
+            setLevel(level + 1);
+            setImages(images.concat(`image${level + 3}.jpg`));
+        }
+    }, [score, level, images])
 
     function shuffleImages(images) {
 
@@ -52,8 +56,9 @@ function App() {
             // TODO: create overlay to display 'Game Over'
             window.alert('Game over!');
             setSelected(new Map());
-            setTopScore(score);
+            setLevel(1);
             setScore(0);
+            setImages(levelOne);
         // else, add image to selected, increment score and shuffle images
         } else {
             setSelected(new Map(selected.set(event.target.alt,1)));
