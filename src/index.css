@@ -1,19 +1,77 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* || GENERAL STYLES */
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
 }
+
+/* || UTILITIES */
+
+.border {
+    border: 1px solid black;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.none {
+    display: none;
+}
+
+/* flexbox */
+.flex {
+    display: flex;
+}
+
+.flex-jc-c {
+    justify-content: center;
+}
+
+.flex-jc-fe {
+    justify-content: flex-end;
+}
+
+.flex-jc-fs {
+    justify-content: flex-start;
+}
+
+.flex-jc-sa {
+    justify-content: space-around;
+}
+
+.flex-jc-sb {
+    justify-content: space-between;
+}
+
+.flex-jc-se {
+    justify-content: space-evenly;
+}
+
+.flex-ai-c {
+    align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* || SITEWIDE */

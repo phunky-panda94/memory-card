@@ -1,42 +1,18 @@
 .card {
     border: 2px solid black;
     border-radius: 10px;
+    cursor: pointer;
     height: 250px;
-    margin: 15px; 
+    margin: 10px;
     width: 250px;
 }
 
+.card:hover {
+    transform: scale(1.05);
+}
+
 .container {
-    border: 1px solid black;
-    width: calc(250px * 3);
+    width: calc(275px * 3);
 }
 
-.heading {
-    font-size: 48px;
-    font-weight: 700;
-}
 
-/* flexbox */
-.flex {
-    display: flex;
-}
-
-.flex-jc-c {
-    justify-content: center;
-}
-
-.flex-jc-se {
-    justify-content: space-evenly;
-}
-
-.flex-ai-c {
-    align-items: center;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-.flex-row {
-    flex-direction: row;
-}
