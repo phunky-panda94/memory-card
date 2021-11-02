@@ -16,37 +16,56 @@ function App() {
     const [topScore, setTopScore] = useState(score);
     const [images, setImages] = useState(levelOne);
 
+    // shuffle images on increase in score
     useEffect(() => {
         setImages(shuffleImages(images));
+    }, [score, images])
+
+    // update topScore
+    useEffect(() => {
         if (score > topScore) {
             setTopScore(score);
         }
-    }, [score, topScore, images])
+    }, [score, topScore])
 
+    // win
     useEffect(() => {
-        if (score == level + 2) {
+        if (score === 9) {
+            window.alert('Congratulations! You win!');
+            if (window.confirm('Want to play again?')) {
+                resetGame();
+            }
+        }
+    })
+
+    // nextLevel if score = currentLevel * 3
+    useEffect(() => {
+        if (score < 9 && score === level * 3) {
             setLevel(level + 1);
-            setImages(images.concat(`image${level + 3}.jpg`));
         }
-    }, [score, level, images])
+    }, [score, level])
 
-    function shuffleImages(images) {
-
-        let temp;
-        let randomIndex;
-
-        // loop through images
-        for (let i = 0; i < images.length; i++) {
-
-            randomIndex = Math.floor(Math.random() * (images.length - 1))
-            temp = images[i]
-            images[i] = images[randomIndex]
-            images[randomIndex] = temp
-
+    // add images when nextLevel
+    useEffect(() => {
+        if (level > 1) {
+        
+            let nextLevel = [
+                `image${level * 3 - 2}.jpg`,
+                `image${level * 3 - 1}.jpg`,
+                `image${level * 3}.jpg`
+            ]
+            
+            setImages(images => shuffleImages(images.concat(nextLevel)));
+            
         }
+    }, [level])
 
-        return images
-
+    function resetGame() {
+        setScore(0);
+        setTopScore(0);
+        setLevel(1);
+        setImages(levelOne);
+        setSelected(new Map());
     }
 
     function handleClick(event) {
@@ -55,10 +74,7 @@ function App() {
         if (selected.get(event.target.alt) !== undefined) {
             // TODO: create overlay to display 'Game Over'
             window.alert('Game over!');
-            setSelected(new Map());
-            setLevel(1);
-            setScore(0);
-            setImages(levelOne);
+            resetGame();
         // else, add image to selected, increment score and shuffle images
         } else {
             setSelected(new Map(selected.set(event.target.alt,1)));
@@ -79,6 +95,25 @@ function App() {
             <Display images={images} handleClick={handleClick}/>
         </div>
     );
+}
+
+function shuffleImages(images) {
+
+    let temp;
+    let randomIndex;
+
+    // loop through images
+    for (let i = 0; i < images.length; i++) {
+
+        randomIndex = Math.floor(Math.random() * (images.length - 1))
+        temp = images[i]
+        images[i] = images[randomIndex]
+        images[randomIndex] = temp
+
+    }
+
+    return images
+
 }
 
 export default App;
