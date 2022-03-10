@@ -1,17 +1,11 @@
-import Card from "./Card";
+import Card from './Card';
 
 function Display(props) {
     return (
         <div className="container flex flex-row flex-wrap flex-jc-se">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {props.images.map(image => {
+                return <Card key={image} image={image} handleClick={props.handleClick}/>
+            })}
         </div>
     )
 }

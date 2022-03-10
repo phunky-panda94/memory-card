@@ -11,6 +11,12 @@
     transform: scale(1.05);
 }
 
+.card > img {
+    border-radius: 10px;
+    height: 250px;
+    width: 250px;
+}
+
 .container {
     width: calc(275px * 3);
 }
