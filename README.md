@@ -1,11 +1,7 @@
-#Memory Card
+# Memory Card
 
-This project demonstrates the use of React.
+This project demonstrates the use of React and the following concepts:
 
-Front-end
-
-Using React:
-
-state
-props
-useEffect and useState hooks
+- state
+- props
+- useEffect and useState hooks
